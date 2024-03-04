@@ -1,0 +1,83 @@
+Crear_Gato: Coco
+Crear_Gato: Gizmo
+Crear_Gato: Misty
+Crear_Gato: Shadow
+Crear_Gato: Oreo
+Crear_Gato: Rocky
+Crear_Gato: Bella
+Crear_Gato: Max
+Crear_Gato: Snowball
+Crear_Gato: Simba
+Crear_Gato: Milo
+Crear_Gato: Luna
+Crear_Gato: Whiskers
+Crear_Gato: Garfield
+Crear_Gato: Felix
+Crear_Gato: Patch
+
+
+Dar_de_Comer: Garfield,700
+Jugar: Garfield,9000
+Resumen_Mascota: Garfield
+
+Dar_de_Comer: Felix,500
+Jugar: Felix,20
+Resumen_Mascota: Felix
+
+Dar_de_Comer: Whiskers,400
+Jugar: Whiskers,25
+Resumen_Mascota: Whiskers
+
+Dar_de_Comer: Luna,450
+Jugar: Luna,18
+Resumen_Mascota: Luna
+
+Dar_de_Comer: Simba,550
+Jugar: Simba,22
+Resumen_Mascota: Simba
+
+Dar_de_Comer: Snowball,480
+Jugar: Snowball,16
+Resumen_Mascota: Snowball
+
+Dar_de_Comer: Max,520
+Jugar: Max,19
+Resumen_Mascota: Max
+
+Dar_de_Comer: Bella,490
+Jugar: Bella,21
+Resumen_Mascota: Bella
+
+Dar_de_Comer: Oreo,470
+Jugar: Oreo,17
+Resumen_Mascota: Oreo
+
+Dar_de_Comer: Shadow,530
+Jugar: Shadow,23
+Resumen_Mascota: Shadow
+
+Dar_de_Comer: Misty,420
+Jugar: Misty,14
+Resumen_Mascota: Misty
+
+Dar_de_Comer: Coco,510
+Jugar: Coco,18
+Resumen_Mascota: Coco
+
+Dar_de_Comer: Gizmo,460
+Jugar: Gizmo,20
+Resumen_Mascota: Gizmo
+
+Dar_de_Comer: Rocky,540
+Jugar: Rocky,22
+Resumen_Mascota: Rocky
+
+Dar_de_Comer: Milo,480
+Jugar: Milo,16
+Resumen_Mascota: Milo
+
+Dar_de_Comer: Patch,500
+Jugar: Patch,19
+Resumen_Mascota: Patch
+
+Resumen_Global
