@@ -8,7 +8,7 @@ print("Curso: Lenguajes Formales y de Programación")
 print("Sección: B-")
 print("Carnet: 202201139")
 input("\nPresione enter para continuar...")
-
+lista_imagenes=[]
 class Gato():
     def __init__(self, nombre, energia=1):
         self.nombre = nombre
@@ -45,12 +45,40 @@ def Generar_Grafo(nombre, energia, estado, lista_imagenes):
     dot.render(filename=f'{nombre}_grafo', format='png', directory='./', cleanup=True)
 
     lista_imagenes.append(f'{nombre}_grafo.png')  # Agregar el nombre de archivo a la lista de imágenes
+    
+
+def combinar_imagenes_con_os(nombre_salida="imagenes_combinadas.png"):
+    imagenes = [imagen for imagen in os.listdir('.') if imagen.endswith('.png')]
+    
+    if not imagenes:
+        print("No se encontraron imágenes PNG en el directorio.")
+        return
+
+    primera_imagen = Image.open(imagenes[0])
+    imagenes = imagenes[1:]
+
+    # Obtener el tamaño de la primera imagen para crear la imagen combinada
+    ancho, alto = primera_imagen.size
+    imagen_combinada = Image.new("RGB", (ancho, alto * (len(imagenes) + 1)))
+
+    # Pegar la primera imagen en la parte superior de la imagen combinada
+    imagen_combinada.paste(primera_imagen, (0, 0))
+
+    # Pegar las imágenes restantes debajo de la primera imagen
+    for idx, imagen in enumerate(imagenes):
+        imagen_actual = Image.open(imagen)
+        imagen_combinada.paste(imagen_actual, (0, (idx + 1) * alto))
+
+    # Guardar la imagen combinada
+    imagen_combinada.save(nombre_salida)
+    print(f"Se han combinado todas las imágenes en {nombre_salida}")
+
 
 def LimpiarImagenes():
     directorio = './'
     archivos = os.listdir(directorio)
     for archivo in archivos:
-        if archivo != 'graficas_gatos.png' and archivo.endswith('.png'):
+        if archivo != 'imagenes_combinadas.png' and archivo.endswith('.png'):
             os.remove(os.path.join(directorio, archivo))
 
 def Crear_Gatos(archivo):
@@ -107,7 +135,7 @@ def Resumen_Mascota(archivo, gatos, nombre):
     for gato in gatos_creados:
         resumen += f"ENERGIA ACTUAL: {gato.energia}\n"
 
-    # Llamada a Generar_Grafo con energía y estado
+
     Generar_Grafo(nombre, gato.energia, gato.estado, [])
 
     return resumen
@@ -124,7 +152,7 @@ def Imprimiendo(gatos):
     resumen_global = Resumen_Global(archivo, gatos)
     with open("gatos.petworld_result", "w") as archivo_resultado:
         archivo_resultado.write(resumen_global)
-
+    combinar_imagenes_con_os()
 Menu = True
 
 while Menu:
@@ -169,7 +197,8 @@ while Menu:
                                 print(gato)
 
                             Imprimiendo(gatos_creados)
-
+                            combinar_imagenes_con_os()
+                            LimpiarImagenes()
                         except:
                             print(f"Error leyendo archivo {archivo}")
 
