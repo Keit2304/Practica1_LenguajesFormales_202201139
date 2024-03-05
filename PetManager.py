@@ -27,21 +27,17 @@ class Gato():
 
 def Generar_Grafo(nombre, energia, estado, lista_imagenes):
     dot = graphviz.Digraph(comment='Gatos')
-
-    # Definir el nodo raíz (nombre del gato)
+    
     dot.node(nombre, f'Nombre: {nombre}')
 
-    # Definir nodos secundarios y conectarlos al nodo raíz
     dot.node(f'Energia_{nombre}', f'Energía: {energia}')
     dot.node(f'Tipo_{nombre}', f'Tipo: GATO')
     dot.node(f'Estado_{nombre}', f'Estado: {estado}')
 
-    # Conectar nodos secundarios al nodo raíz
     dot.edge(nombre, f'Energia_{nombre}')
     dot.edge(nombre, f'Tipo_{nombre}')
     dot.edge(nombre, f'Estado_{nombre}')
 
-    # Guardar el grafo en un archivo temporal
     dot.render(filename=f'{nombre}_grafo', format='png', directory='./', cleanup=True)
 
     lista_imagenes.append(f'{nombre}_grafo.png') 
@@ -57,19 +53,15 @@ def combinar_imagenes_con_os(nombre_salida="imagenes_combinadas.png"):
     primera_imagen = Image.open(imagenes[0])
     imagenes = imagenes[1:]
 
-    # Obtener el tamaño de la primera imagen para crear la imagen combinada
     ancho, alto = primera_imagen.size
     imagen_combinada = Image.new("RGB", (ancho, alto * (len(imagenes) + 1)))
 
-    # Pegar la primera imagen en la parte superior de la imagen combinada
     imagen_combinada.paste(primera_imagen, (0, 0))
 
-    # Pegar las imágenes restantes debajo de la primera imagen
     for idx, imagen in enumerate(imagenes):
         imagen_actual = Image.open(imagen)
         imagen_combinada.paste(imagen_actual, (0, (idx + 1) * alto))
 
-    # Guardar la imagen combinada
     imagen_combinada.save(nombre_salida)
     print(f"Se han combinado todas las imágenes en {nombre_salida}")
 
@@ -124,7 +116,6 @@ def Jugar_Gatos(archivo, gatos):
 def Resumen_Mascota(archivo, gatos, nombre):
     resumen = f"__________Resumen de acciones para {nombre} __________\n"
 
-    # Crear gato
     gatos_creados = [gato for gato in Crear_Gatos(archivo) if gato.nombre == nombre]
     for gato in gatos_creados:
         resumen += f" {gato}\n"
@@ -135,7 +126,6 @@ def Resumen_Mascota(archivo, gatos, nombre):
     for gato in gatos_creados:
         resumen += f"{gato.nombre}, Energia actual: {gato.energia}, Estado: {gato.estado} \n"
 
-    # Llamada a Generar_Grafo con energía y estado
     Generar_Grafo(nombre, gato.energia, gato.estado, [])
 
     return resumen
