@@ -44,7 +44,7 @@ def Generar_Grafo(nombre, energia, estado, lista_imagenes):
     # Guardar el grafo en un archivo temporal
     dot.render(filename=f'{nombre}_grafo', format='png', directory='./', cleanup=True)
 
-    lista_imagenes.append(f'{nombre}_grafo.png')  # Agregar el nombre de archivo a la lista de imágenes
+    lista_imagenes.append(f'{nombre}_grafo.png') 
     
 
 def combinar_imagenes_con_os(nombre_salida="imagenes_combinadas.png"):
@@ -102,8 +102,8 @@ def Alimentar_Gatos(archivo, gatos):
                 for gato in gatos:
                     if gato.nombre == nombre_gato:
                         gato.dar_de_comer(peso_raton)
-                        output += f"[{datetime.datetime.now()}] - Se alimento al gato {gato.nombre} con un raton de {peso_raton}g\n"
-                        output += f"Ahora su energia es de: {gato.energia}\n"
+                        output += f"[{datetime.datetime.now()}] - {gato.nombre}, Gracias por alimentarme con un raton de {peso_raton}g, Ahora mi energia es de: {gato.energia}"
+                        
     return output
 
 def Jugar_Gatos(archivo, gatos):
@@ -117,8 +117,8 @@ def Jugar_Gatos(archivo, gatos):
                 for gato in gatos:
                     if gato.nombre == nombre_gato:
                         gato.jugar(tiempo)
-                        output += f"[{datetime.datetime.now()}] - El gato {gato.nombre} ha jugado por {tiempo} minutos\n"
-                        output += f"Ahora su energia es de: {round(gato.energia, 1)}\n"
+                        output += f"[{datetime.datetime.now()}] - {gato.nombre}, Gracias por jugar conmigo por {tiempo} minutos, Ahora mi energia es de: {round(gato.energia, 1)} \n"
+                        
     return output
 
 def Resumen_Mascota(archivo, gatos, nombre):
@@ -133,9 +133,9 @@ def Resumen_Mascota(archivo, gatos, nombre):
     resumen += Jugar_Gatos(archivo, gatos_creados) + "\n"
 
     for gato in gatos_creados:
-        resumen += f"ENERGIA ACTUAL: {gato.energia}\n"
+        resumen += f"{gato.nombre}, Energia actual: {gato.energia}, Estado: {gato.estado} \n"
 
-
+    # Llamada a Generar_Grafo con energía y estado
     Generar_Grafo(nombre, gato.energia, gato.estado, [])
 
     return resumen
